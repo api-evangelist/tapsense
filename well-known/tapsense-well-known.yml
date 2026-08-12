@@ -1,0 +1,134 @@
+generated: '2026-08-12'
+method: probed
+source: https://tapsense.com/
+name: Tapsense well-known probe
+description: >-
+  Probe of the standard /.well-known/ discovery paths plus common machine-readable
+  contract locations on the only host Tapsense ever operated. NOTHING WAS FOUND. The
+  tapsense.com zone is a parked domain served by Trellian Pty. Limited (netblock
+  TRELLIAN-AU, 103.224.182.252) with a WILDCARD A record, so every subdomain probed -
+  www, api, docs, developer - answers with the identical 995-byte holding page reading
+  "This domain may be for sale."
+
+  READ THE STATUS COLUMN CAREFULLY. Four paths return HTTP 200, and none of them is a
+  document. Each 200 is the same text/html parking shell, byte-for-byte identical to the
+  site root; the parking host serves it for any path it does not recognize. This is a
+  soft-200, not evidence of a served surface. No WellKnown, SecurityTxt, AgentCard,
+  OpenAPI or LLMsTxt pointer is emitted in apis.yml for any of these hits, and none may
+  be emitted on a future run without a body that actually parses as the document its
+  path claims.
+
+host: tapsense.com
+host_status: parked
+parking_provider: Trellian Pty. Limited
+resolves_to: 103.224.182.252
+wildcard_dns: true
+soft_200: true
+soft_200_signature:
+  bytes: 995
+  content_type: text/html; charset=UTF-8
+  title: tapsense.com
+  body_marker: This domain may be for sale.
+
+probes:
+- path: /.well-known/security.txt
+  url: https://tapsense.com/.well-known/security.txt
+  status: 200
+  content_type: text/html; charset=UTF-8
+  bytes: 995
+  document: false
+  file: null
+  note: Parking holding page, not a security.txt. Soft-200 - treated as a miss.
+- path: /.well-known/openid-configuration
+  url: https://tapsense.com/.well-known/openid-configuration
+  status: 200
+  content_type: text/html; charset=UTF-8
+  bytes: 995
+  document: false
+  file: null
+  note: Parking holding page, not OIDC metadata. Soft-200 - treated as a miss.
+- path: /.well-known/oauth-authorization-server
+  url: https://tapsense.com/.well-known/oauth-authorization-server
+  status: 200
+  content_type: text/html; charset=UTF-8
+  bytes: 995
+  document: false
+  file: null
+  note: Parking holding page, not authorization-server metadata. Soft-200 - treated as a miss.
+- path: /.well-known/api-catalog
+  url: https://tapsense.com/.well-known/api-catalog
+  status: 200
+  content_type: text/html; charset=UTF-8
+  bytes: 995
+  document: false
+  file: null
+  note: Parking holding page, not an RFC 9727 api-catalog. Soft-200 - treated as a miss.
+- path: /.well-known/ai-plugin.json
+  url: https://tapsense.com/.well-known/ai-plugin.json
+  status: 404
+  document: false
+  file: null
+- path: /.well-known/agent-card.json
+  url: https://tapsense.com/.well-known/agent-card.json
+  status: 404
+  document: false
+  file: null
+- path: /.well-known/agent.json
+  url: https://tapsense.com/.well-known/agent.json
+  status: 404
+  document: false
+  file: null
+  note: Legacy pre-0.3 A2A path also probed. Absent.
+- path: /openapi.json
+  url: https://tapsense.com/openapi.json
+  status: 404
+  document: false
+  file: null
+- path: /swagger.json
+  url: https://tapsense.com/swagger.json
+  status: 404
+  document: false
+  file: null
+- path: /llms.txt
+  url: https://tapsense.com/llms.txt
+  status: 200
+  content_type: text/html; charset=UTF-8
+  bytes: 995
+  document: false
+  file: null
+  note: Parking holding page, not an llms.txt. Soft-200 - treated as a miss.
+
+hosts_probed:
+- host: tapsense.com
+  status: 200
+  finding: Trellian parking page, "This domain may be for sale."
+- host: www.tapsense.com
+  status: 200
+  finding: Same 995-byte parking page (wildcard).
+- host: api.tapsense.com
+  status: 200
+  finding: Same 995-byte parking page (wildcard). No API is served here.
+- host: docs.tapsense.com
+  status: 0
+  finding: TLS handshake fails - certificate has expired. No documentation host.
+- host: developer.tapsense.com
+  status: 200
+  finding: Same 995-byte parking page (wildcard). No developer portal.
+
+results:
+  documents_found: 0
+  hard_404: 5
+  soft_200: 5
+  pointers_emitted: 0
+
+pointer_policy: >-
+  No common[] pointer of any type is emitted from this file. A WellKnown or SecurityTxt
+  pointer asserts that the PROVIDER serves that surface; Tapsense serves nothing, and the
+  200s here belong to a domain-parking vendor that acquired the abandoned zone. Recording
+  this absence is the finding.
+
+domain_security_note: >-
+  The TLS/HSTS/DNSSEC/CAA/SPF/DMARC probe was deliberately NOT run as a scored
+  DomainSecurity artifact. On a parked domain those records describe Trellian's parking
+  infrastructure, not any posture Tapsense maintains, so publishing them would credit a
+  defunct company for a third party's configuration.
