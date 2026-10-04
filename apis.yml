@@ -36,6 +36,7 @@ description: TapSense was a mobile advertising and real-time-bidding exchange fo
   PyPI, RubyGems, Maven Central, CocoaPods or crates.io. The advertiser API and mobile
   SDKs the company once marketed went offline with it, so there is nothing to enrich
   beyond this identity record.
+x-status: defunct
 url: https://raw.githubusercontent.com/api-evangelist/tapsense/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -52,6 +53,7 @@ tags:
 - AdTech
 - Real-Time Bidding
 - Monetization
+- Defunct
 apis: []
 common:
 - type: Website
